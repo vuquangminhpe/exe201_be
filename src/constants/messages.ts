@@ -80,51 +80,10 @@ export const USERS_MESSAGES = {
   INVALID_REFRESH_TOKEN: 'Invalid refresh token'
 } as const
 
-export const TWEET_MESSAGE = {
-  CREATE_TWEET_SUCCESS: 'Create tweet success',
-  INVALID_TYPE: 'Invalid type',
-  INVALID_AUDIENCE: 'Invalid audience',
-  INVALID_PARENT_ID: 'Invalid parent id',
-  PARENT_ID_MUST_BE_NULL: 'Parent id must be null',
-  CONTENT_MUST_BE_A_NON_EMPTY_STRING: 'Content must be a non empty string',
-  CONTENT_MUST_BE_EMPTY_STRING: 'Content must be empty string',
-  HASHTAGS_MUST_BE_AN_ARRAY_OF_STRING: 'Hashtags must be an array of string',
-  MENTIONS_MUST_BE_AN_ARRAY_OF_USER_ID: 'Mentions must be an array of user id',
-  MEDIAS_MUST_BE_AN_ARRAY_OF_MEDIA_OBJECT: 'Medias must be an array of media object',
-  INVALID_TWEET_ID: 'Invalid tweet id',
-  TWEET_NOT_FOUND: 'Tweet not found',
-  GET_TWEET_SUCCESS: 'Get tweet success',
-  GET_TWEET_DETAILS_SUCCESS: 'Get tweet details success',
-  TWEET_IS_NOT_PUBLIC: 'Tweet is not public',
-  GET_TWEET_CHILDREN_SUCCESS: 'Get tweet children success',
-  TWEET_ID_MUST_BE_A_STRING: 'Tweet id must be a string',
-  UNAUTHORIZED: 'Unauthorized',
-  NEW_CONTENT_MUST_BE_A_NON_EMPTY_STRING: 'New content must be a non empty string',
-  GET_CONVERSATION_IN_AI_SUCCESS: 'Get conversation in AI success',
-  GET_CONVERSATION_IN_AI_FAILED: 'Get conversation in AI failed',
-  EDIT_TWEET_SUCCESS: 'Edit tweet success',
-  DELETE_TWEET_SUCCESS: 'Delete tweet success',
-  INVALID_CONTENT: 'Invalid content',
-  GET_NEW_TWEET_SUCCESS: 'Get New Feeds Success',
-  PREMIUM_USER_REQUIRED: 'Premium user required',
-  PLATINUM_USER_REQUIRED: 'Platinum user required',
-  GENERATE_TWEET_GEMINI_SUCCESS: 'Generate tweet gemini success',
-  CHAT_WITH_GEMINI_SUCCESS: 'Chat with gemini success'
-} as const
 
-export const BOOKMARKS_MESSAGE = {
-  BOOKMARKS_TWEET_SUCCESS: 'Bookmarks tweet success',
-  BOOKMARK_ALREADY_EXISTS: 'Bookmarks already exists',
-  UN_BOOKMARKS_TWEET_SUCCESS: 'Un bookmarks tweet success',
-  GET_BOOKMARKS_IN_ACCOUNT_SUCCESS: 'Get bookmarks in account success'
-}
-export const LIKES_MESSAGE = {
-  LIKES_TWEET_SUCCESS: 'Likes tweets success',
-  UN_LIKES_TWEET_SUCCESS: 'Un likes tweets success',
-  ALREADY_LIKED_THIS_TWEET: 'Already liked this tweet',
-  ALREADY_UN_LIKED_THIS_TWEET: 'Already un liked this tweet',
-  GET_LIKES_SUCCESS: 'Get likes success'
-}
+
+
+
 export const SEARCH_MESSAGE = {
   CONTENT_MUST_BE_STRING: 'Content must be string',
   MEDIA_TYPE_MUST_BE_ONE_OF_MEDIA_TYPE_QUERY: `Media type must be one of ${Object.values(MediaTypeQuery).join(', ')}`,
@@ -145,58 +104,9 @@ export const CONVERSATIONS_MESSAGE = {
   SET_EMOJI_MESSAGE_IN_CONVERSATION_SUCCESSFULLY: 'Set emoji message in conversation successfully',
   DELETE_ALL_MESSAGE_IN_CONVERSATION_SUCCESSFULLY: 'Delete all message in conversation successfully'
 }
-export const COMMENT_MESSAGES = {
-  GET_COMMENT_SUCCESS: 'Get comment success',
-  CREATE_COMMENT_SUCCESS: 'Create comment success',
-  COMMENT_MUST_BE_A_STRING: 'Comment must be a string',
-  COMMENT_LENGTH_MUST_BE_BETWEEN_1_AND_280: 'Comment length must be between 1 and 280',
-  COMMENT_LINK_MUST_BE_AN_ARRAY: 'Comment link must be an array',
-  COMMENT_LINK_MUST_BE_AN_ARRAY_OF_MEDIA_OBJECT: 'Comment link must be an array of media object',
-  EDIT_COMMENT_SUCCESS: 'Edit comment success',
-  NO_EDIT_COMMENT: 'No edit comment',
-  DELETE_COMMENT_SUCCESS: 'Delete comment success',
-  NO_COMMENT_TO_DELETE: 'No comment to delete'
-}
 
-export const STORIES_MESSAGE = {
-  CREATE_STORY_SUCCESS: 'Create story success',
-  GET_STORY_SUCCESS: 'Get story success',
-  GET_STORY_DETAILS_SUCCESS: 'Get story details success',
-  STORY_NOT_FOUND: 'Story not found',
-  STORY_ID_MUST_BE_A_STRING: 'Story id must be a string',
-  STORY_IS_NOT_PUBLIC: 'Story is not public',
-  GET_STORY_CHILDREN_SUCCESS: 'Get story children success',
-  CAPTION_MUST_BE_A_STRING: 'Caption must be a string',
-  CONTENT_MUST_BE_A_STRING: 'Content must be a string',
-  MEDIA_URL_MUST_BE_A_STRING: 'Media url must be a string',
-  MEDIA_TYPE_MUST_BE_A_STRING: 'Media type must be a string',
-  PRIVACY_MUST_BE_AN_ARRAY: 'Privacy must be an array',
-  PRIVACY_MUST_BE_AN_ARRAY_OF_USER_ID: 'Privacy must be an array of user id',
-  STORY_ID_IS_REQUIRED: 'Story id is required',
-  STORY_NOT_FOUND_OR_NOT_PUBLIC: 'Story not found or not public',
-  DELETE_STORY_SUCCESS: 'Delete story success',
-  EDIT_STORY_SUCCESS: 'Edit story success',
-  STORY_ALREADY_EXISTS: 'Story already exists',
-  STORY_NOT_EXISTS: 'Story not exists',
-  STORY_NOT_PUBLIC: 'Story not public',
-  STORY_LINK_IS_REQUIRED: 'Story link is required',
-  STORY_LINK_MUST_BE_A_STRING: 'Story link must be a string',
-  CONTENT_MUST_NOT_BE_EMPTY: 'Content must not be empty',
-  CAPTION_MUST_BE_NOT_BE_EMPTY: 'Caption must not be empty',
-  STORY_ID_MUST_NOT_BE_EMPTY: 'Story id must not be empty',
-  VIEW_STATUS_MUST_BE_A_STRING: 'View status must be a string',
-  VIEW_STATUS_MUST_NOT_BE_EMPTY: 'View status must not be empty',
-  VIEW_AND_STATUS_STORY_SUCCESS: 'View and status story success',
-  CANNOT_VIEW_AND_STATUS_YOURSELF_STORY: 'Cannot view and status yourself story',
-  UPDATE_STORY_SUCCESS: 'Update story success',
-  GET_NEWS_FEED_STORIES_SUCCESS: 'Get news feed stories success',
-  GET_ARCHIVE_STORIES_SUCCESS: 'Get archive stories success',
-  GET_STORY_VIEWERS_SUCCESS: 'Get story viewers success',
-  REACT_STORY_SUCCESS: 'React story success',
-  REPLY_STORY_SUCCESS: 'Reply story success',
-  HIDE_USER_STORIES_SUCCESS: 'Hide user stories success',
-  STORY_IS_NOT_YOURS_SELF_YOU_CANNOT_DELETE_IT: 'Story is not yours self you cannot delete it'
-}
+
+
 
 export const PAYMENT_MESSAGE = {
   INVALID_SUBSCRIPTION_TYPE: 'Invalid subscription type',
