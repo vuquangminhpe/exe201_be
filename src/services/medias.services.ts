@@ -205,27 +205,6 @@ class MediaService {
     const result = await databaseService.videoStatus.findOne({ name: idStatus })
     return result
   }
-  async deleteLinkInTweet(link: string) {
-    const result = await databaseService.tweets.findOne({
-      medias: {
-        $elemMatch: {
-          url: link
-        }
-      }
-    })
-    if (result) {
-      await databaseService.tweets.updateOne(
-        { _id: result._id },
-        {
-          $pull: {
-            medias: {
-              url: link
-            }
-          }
-        }
-      )
-    }
-  }
 }
 
 const mediaService = new MediaService()

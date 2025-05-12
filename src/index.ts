@@ -11,7 +11,7 @@ import './utils/s3'
 import { createServer } from 'http'
 import helmet from 'helmet'
 import { envConfig, isProduction } from './constants/config'
-import initSocket from './utils/socket'
+// import initSocket from './utils/socket'
 import { defaultErrorHandler } from './middlewares/error.middlewares'
 
 config()
@@ -53,7 +53,7 @@ app.use('/static', staticRouter)
 // app.use('/static/video-hls', express.static(UPLOAD_VIDEO_HLS_DIR))
 
 app.use(defaultErrorHandler)
-export const io = initSocket(httpServer)
+// export const io = initSocket(httpServer)
 
 httpServer.listen(port, () => {
   console.log(`Server listening on port ${port}`)

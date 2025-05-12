@@ -1,6 +1,7 @@
 import { MongoClient, Db, Collection } from 'mongodb'
 
 import { envConfig } from '../constants/config'
+import VideoStatus from '~/models/schemas/VideoStatus.schema'
 
 const uri = envConfig.mongodb_url
 const dbName = envConfig.db_name
@@ -21,7 +22,18 @@ class DatabaseService {
     }
     return DatabaseService.instance
   }
-
+  async indexVideoStatus() {
+    const exits = await this.users.indexExists('name_1')
+    if (!exits) {
+      this.videoStatus.createIndex({ name: 1 }, { unique: true })
+    }
+  }
+  get users(): Collection<any> {
+    return this.db.collection(envConfig.usersCollection)
+  }
+  get videoStatus(): Collection<VideoStatus> {
+    return this.db.collection(envConfig.VideoStatusCollection)
+  }
   async connect() {
     try {
       await this.client.connect() // Kết nối nếu chưa có

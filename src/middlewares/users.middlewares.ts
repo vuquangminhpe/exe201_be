@@ -1,6 +1,6 @@
 import { checkSchema, ParamSchema } from 'express-validator'
 import { validate } from '../utils/validation'
-import usersService from '../services/users.services'
+// import usersService from '../services/users.services'
 import { TWEET_MESSAGE, USERS_MESSAGES } from '../constants/messages'
 import databaseService from '../services/database.services'
 import { hashPassword } from '../utils/crypto'
@@ -167,36 +167,36 @@ export const loginValidator = validate(
     ['body']
   )
 )
-export const registerValidator = validate(
-  checkSchema(
-    {
-      name: nameSchema,
-      email: {
-        notEmpty: {
-          errorMessage: USERS_MESSAGES.EMAIL_IS_REQUIRED
-        },
-        isEmail: {
-          errorMessage: USERS_MESSAGES.EMAIL_IS_VALID
-        },
-        trim: true,
-        custom: {
-          options: async (email: string) => {
-            const isExitEmail = await usersService.checkUsersExists(email)
+// export const registerValidator = validate(
+//   checkSchema(
+//     {
+//       name: nameSchema,
+//       email: {
+//         notEmpty: {
+//           errorMessage: USERS_MESSAGES.EMAIL_IS_REQUIRED
+//         },
+//         isEmail: {
+//           errorMessage: USERS_MESSAGES.EMAIL_IS_VALID
+//         },
+//         trim: true,
+//         custom: {
+//           options: async (email: string) => {
+//             const isExitEmail = await usersService.checkUsersExists(email)
 
-            if (isExitEmail) {
-              throw new Error(USERS_MESSAGES.EMAIL_ALREADY_EXISTS)
-            }
-            return true
-          }
-        }
-      },
-      password: passwordSchema,
-      confirm_password: confirmPasswordSchema,
-      date_of_birth: DateOfBirthSchema
-    },
-    ['body']
-  )
-)
+//             if (isExitEmail) {
+//               throw new Error(USERS_MESSAGES.EMAIL_ALREADY_EXISTS)
+//             }
+//             return true
+//           }
+//         }
+//       },
+//       password: passwordSchema,
+//       confirm_password: confirmPasswordSchema,
+//       date_of_birth: DateOfBirthSchema
+//     },
+//     ['body']
+//   )
+// )
 
 export const AccessTokenValidator = validate(
   checkSchema(
@@ -221,59 +221,59 @@ export const AccessTokenValidator = validate(
   )
 )
 
-export const RefreshTokenValidator = validate(
-  checkSchema(
-    {
-      refresh_token: {
-        notEmpty: {
-          errorMessage: new ErrorWithStatus({
-            message: USERS_MESSAGES.REFRESH_TOKEN_IS_REQUIRED,
-            status: HTTP_STATUS.UNAUTHORIZED
-          })
-        },
-        trim: true,
-        custom: {
-          options: async (value: string, { req }) => {
-            try {
-              const decoded_refresh_token = await verifyToken({
-                token: value,
-                secretOnPublicKey: envConfig.secretOnPublicKey_Refresh as string
-              })
+// export const RefreshTokenValidator = validate(
+//   checkSchema(
+//     {
+//       refresh_token: {
+//         notEmpty: {
+//           errorMessage: new ErrorWithStatus({
+//             message: USERS_MESSAGES.REFRESH_TOKEN_IS_REQUIRED,
+//             status: HTTP_STATUS.UNAUTHORIZED
+//           })
+//         },
+//         trim: true,
+//         custom: {
+//           options: async (value: string, { req }) => {
+//             try {
+//               const decoded_refresh_token = await verifyToken({
+//                 token: value,
+//                 secretOnPublicKey: envConfig.secretOnPublicKey_Refresh as string
+//               })
 
-              const user_id = await valkeyService.getUserIdFromToken(value)
+//               const user_id = await valkeyService.getUserIdFromToken(value)
 
-              if (!user_id) {
-                throw new ErrorWithStatus({
-                  message: USERS_MESSAGES.USED_REFRESH_TOKEN_OR_NOT_EXITS,
-                  status: HTTP_STATUS.UNAUTHORIZED
-                })
-              }
+//               if (!user_id) {
+//                 throw new ErrorWithStatus({
+//                   message: USERS_MESSAGES.USED_REFRESH_TOKEN_OR_NOT_EXITS,
+//                   status: HTTP_STATUS.UNAUTHORIZED
+//                 })
+//               }
 
-              if (user_id !== decoded_refresh_token.user_id) {
-                throw new ErrorWithStatus({
-                  message: USERS_MESSAGES.INVALID_REFRESH_TOKEN,
-                  status: HTTP_STATUS.UNAUTHORIZED
-                })
-              }
+//               if (user_id !== decoded_refresh_token.user_id) {
+//                 throw new ErrorWithStatus({
+//                   message: USERS_MESSAGES.INVALID_REFRESH_TOKEN,
+//                   status: HTTP_STATUS.UNAUTHORIZED
+//                 })
+//               }
 
-              ;(req as Request).decoded_refresh_token = decoded_refresh_token
-            } catch (error) {
-              if (error instanceof JsonWebTokenError) {
-                throw new ErrorWithStatus({
-                  message: _.capitalize(error.message),
-                  status: HTTP_STATUS.UNAUTHORIZED
-                })
-              }
-              throw error
-            }
-            return true
-          }
-        }
-      }
-    },
-    ['body']
-  )
-)
+//               ;(req as Request).decoded_refresh_token = decoded_refresh_token
+//             } catch (error) {
+//               if (error instanceof JsonWebTokenError) {
+//                 throw new ErrorWithStatus({
+//                   message: _.capitalize(error.message),
+//                   status: HTTP_STATUS.UNAUTHORIZED
+//                 })
+//               }
+//               throw error
+//             }
+//             return true
+//           }
+//         }
+//       }
+//     },
+//     ['body']
+//   )
+// )
 
 export const emailVerifyTokenValidator = validate(
   checkSchema(
