@@ -6,53 +6,10 @@ interface OrganizationType {
   name: string
   description?: string
   logo?: string
-  website?: string
-  industry?: string
-  size?: string
-  address?: {
-    street: string
-    city: string
-    state: string
-    postalCode: string
-    country: string
-  }
-  contact: {
-    email: string
-    phone: string
-    fax?: string
-  }
-  socialMedia?: {
-    facebook?: string
-    twitter?: string
-    linkedin?: string
-    instagram?: string
-  }
-  subscription: {
-    plan: string
-    startDate: Date
-    endDate: Date
-    status: SubscriptionStatus
-  }
-  settings: {
-    branding: {
-      colors: {
-        primary: string
-        secondary: string
-        accent: string
-      }
-      customDomain?: string
-    }
-    security: {
-      ssoEnabled: boolean
-      passwordPolicy: {
-        minLength: number
-        requireSpecialChar: boolean
-        requireNumber: boolean
-        requireUppercase: boolean
-        expirationDays: number
-      }
-    }
-  }
+  contactEmail: string
+  contactPhone?: string
+  subscriptionPlan?: string
+  subscriptionStatus?: SubscriptionStatus
   createdAt?: Date
   updatedAt?: Date
 }
@@ -62,53 +19,10 @@ export default class Organization {
   name: string
   description?: string
   logo?: string
-  website?: string
-  industry?: string
-  size?: string
-  address?: {
-    street: string
-    city: string
-    state: string
-    postalCode: string
-    country: string
-  }
-  contact: {
-    email: string
-    phone: string
-    fax?: string
-  }
-  socialMedia?: {
-    facebook?: string
-    twitter?: string
-    linkedin?: string
-    instagram?: string
-  }
-  subscription: {
-    plan: string
-    startDate: Date
-    endDate: Date
-    status: SubscriptionStatus
-  }
-  settings: {
-    branding: {
-      colors: {
-        primary: string
-        secondary: string
-        accent: string
-      }
-      customDomain?: string
-    }
-    security: {
-      ssoEnabled: boolean
-      passwordPolicy: {
-        minLength: number
-        requireSpecialChar: boolean
-        requireNumber: boolean
-        requireUppercase: boolean
-        expirationDays: number
-      }
-    }
-  }
+  contactEmail: string
+  contactPhone?: string
+  subscriptionPlan?: string
+  subscriptionStatus?: SubscriptionStatus
   createdAt: Date
   updatedAt: Date
 
@@ -117,14 +31,10 @@ export default class Organization {
     name,
     description,
     logo,
-    website,
-    industry,
-    size,
-    address,
-    contact,
-    socialMedia,
-    subscription,
-    settings,
+    contactEmail,
+    contactPhone,
+    subscriptionPlan,
+    subscriptionStatus,
     createdAt,
     updatedAt
   }: OrganizationType) {
@@ -133,14 +43,10 @@ export default class Organization {
     this.name = name
     this.description = description
     this.logo = logo
-    this.website = website
-    this.industry = industry
-    this.size = size
-    this.address = address
-    this.contact = contact
-    this.socialMedia = socialMedia
-    this.subscription = subscription
-    this.settings = settings
+    this.contactEmail = contactEmail
+    this.contactPhone = contactPhone || ''
+    this.subscriptionPlan = subscriptionPlan || 'free'
+    this.subscriptionStatus = subscriptionStatus || SubscriptionStatus.Active
     this.createdAt = createdAt || date
     this.updatedAt = updatedAt || date
   }

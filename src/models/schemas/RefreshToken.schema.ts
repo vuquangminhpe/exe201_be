@@ -1,4 +1,4 @@
-import { ObjectId } from 'bson'
+import { ObjectId } from 'mongodb'
 
 interface RefreshTokenType {
   _id?: ObjectId

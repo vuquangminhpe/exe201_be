@@ -4,7 +4,7 @@ import { RoleAction } from '../../constants/enums'
 interface PermissionType {
   _id?: ObjectId
   name: string
-  description: string
+  description?: string
   module: string
   action: RoleAction
   createdAt?: Date
@@ -32,7 +32,7 @@ export default class Permission {
     const date = new Date()
     this._id = _id
     this.name = name
-    this.description = description
+    this.description = description || `${action} permission for ${module}`
     this.module = module
     this.action = action
     this.createdAt = createdAt || date

@@ -3,12 +3,11 @@ import { ObjectId } from 'mongodb'
 interface RoleType {
   _id?: ObjectId
   name: string
-  description: string
+  description?: string
   permissions: ObjectId[]
+  organization: ObjectId
   createdAt?: Date
   updatedAt?: Date
-  createdBy: ObjectId
-  organization: ObjectId
 }
 
 export default class Role {
@@ -16,29 +15,26 @@ export default class Role {
   name: string
   description: string
   permissions: ObjectId[]
+  organization: ObjectId
   createdAt: Date
   updatedAt: Date
-  createdBy: ObjectId
-  organization: ObjectId
 
   constructor({
     _id,
     name,
     description,
     permissions,
+    organization,
     createdAt,
-    updatedAt,
-    createdBy,
-    organization
+    updatedAt
   }: RoleType) {
     const date = new Date()
     this._id = _id
     this.name = name
-    this.description = description
+    this.description = description || ''
     this.permissions = permissions
+    this.organization = organization
     this.createdAt = createdAt || date
     this.updatedAt = updatedAt || date
-    this.createdBy = createdBy
-    this.organization = organization
   }
 }

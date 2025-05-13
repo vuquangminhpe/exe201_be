@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb'
-import { ContentType, ContentStatus, ContentFormat, CallToActionType } from '../../constants/enums'
+import { ContentType, ContentStatus, ContentFormat } from '../../constants/enums'
 
 interface ContentData {
   _id?: ObjectId
@@ -9,35 +9,13 @@ interface ContentData {
   status: ContentStatus
   format: ContentFormat
   body?: string
-  imageUrl?: string
-  videoUrl?: string
-  audioUrl?: string
-  callToAction?: {
-    text: string
-    url: string
-    type: CallToActionType
-  }
-  campaign?: ObjectId
-  event?: ObjectId
-  author: ObjectId
+  mediaUrl?: string
+  author?: ObjectId
+  organization: ObjectId
   publishDate?: Date
-  expiryDate?: Date
   tags?: string[]
-  seo?: {
-    metaTitle?: string
-    metaDescription?: string
-    keywords?: string[]
-    ogImage?: string
-  }
-  metrics?: {
-    views: number
-    shares: number
-    likes: number
-    comments: number
-  }
   createdAt?: Date
   updatedAt?: Date
-  createdBy: ObjectId
 }
 
 export default class Content {
@@ -48,35 +26,13 @@ export default class Content {
   status: ContentStatus
   format: ContentFormat
   body?: string
-  imageUrl?: string
-  videoUrl?: string
-  audioUrl?: string
-  callToAction?: {
-    text: string
-    url: string
-    type: CallToActionType
-  }
-  campaign?: ObjectId
-  event?: ObjectId
-  author: ObjectId
+  mediaUrl?: string
+  author?: ObjectId
+  organization: ObjectId
   publishDate?: Date
-  expiryDate?: Date
   tags?: string[]
-  seo?: {
-    metaTitle?: string
-    metaDescription?: string
-    keywords?: string[]
-    ogImage?: string
-  }
-  metrics: {
-    views: number
-    shares: number
-    likes: number
-    comments: number
-  }
   createdAt: Date
   updatedAt: Date
-  createdBy: ObjectId
 
   constructor({
     _id,
@@ -86,21 +42,13 @@ export default class Content {
     status,
     format,
     body,
-    imageUrl,
-    videoUrl,
-    audioUrl,
-    callToAction,
-    campaign,
-    event,
+    mediaUrl,
     author,
+    organization,
     publishDate,
-    expiryDate,
     tags,
-    seo,
-    metrics,
     createdAt,
-    updatedAt,
-    createdBy
+    updatedAt
   }: ContentData) {
     const date = new Date()
     this._id = _id
@@ -110,25 +58,12 @@ export default class Content {
     this.status = status
     this.format = format
     this.body = body
-    this.imageUrl = imageUrl
-    this.videoUrl = videoUrl
-    this.audioUrl = audioUrl
-    this.callToAction = callToAction
-    this.campaign = campaign
-    this.event = event
+    this.mediaUrl = mediaUrl
     this.author = author
+    this.organization = organization
     this.publishDate = publishDate
-    this.expiryDate = expiryDate
     this.tags = tags
-    this.seo = seo
-    this.metrics = metrics || {
-      views: 0,
-      shares: 0,
-      likes: 0,
-      comments: 0
-    }
     this.createdAt = createdAt || date
     this.updatedAt = updatedAt || date
-    this.createdBy = createdBy
   }
 }

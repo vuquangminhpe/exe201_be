@@ -7,14 +7,10 @@ interface ApiKeyType {
   key: string
   secret: string
   organization: ObjectId
-  permissions: ObjectId[]
-  status: ApiKeyStatus
-  lastUsed?: Date
-  ipRestrictions?: string[]
+  status?: ApiKeyStatus
+  expiresAt?: Date
   createdAt?: Date
   updatedAt?: Date
-  createdBy: ObjectId
-  expiresAt?: Date
 }
 
 export default class ApiKey {
@@ -23,14 +19,10 @@ export default class ApiKey {
   key: string
   secret: string
   organization: ObjectId
-  permissions: ObjectId[]
   status: ApiKeyStatus
-  lastUsed?: Date
-  ipRestrictions?: string[]
+  expiresAt?: Date
   createdAt: Date
   updatedAt: Date
-  createdBy: ObjectId
-  expiresAt?: Date
 
   constructor({
     _id,
@@ -38,14 +30,10 @@ export default class ApiKey {
     key,
     secret,
     organization,
-    permissions,
     status,
-    lastUsed,
-    ipRestrictions,
+    expiresAt,
     createdAt,
-    updatedAt,
-    createdBy,
-    expiresAt
+    updatedAt
   }: ApiKeyType) {
     const date = new Date()
     this._id = _id
@@ -53,14 +41,9 @@ export default class ApiKey {
     this.key = key
     this.secret = secret
     this.organization = organization
-    this.permissions = permissions
-    this.status = status
-    this.lastUsed = lastUsed
-    this.ipRestrictions = ipRestrictions
+    this.status = status || ApiKeyStatus.Active
+    this.expiresAt = expiresAt
     this.createdAt = createdAt || date
     this.updatedAt = updatedAt || date
-    this.createdBy = createdBy
-    this.expiresAt = expiresAt
   }
 }
-
